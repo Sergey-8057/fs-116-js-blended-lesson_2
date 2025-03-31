@@ -1,23 +1,55 @@
-// Напишіть функцію getNumbers(min, max), що приймає 2 параметри -
-// мінімальне і максимальне число відповідно.
-// Напишіть цикл всередині функції, який виводить у консоль
-// всі числа від max до min за спаданням.
-// Окрім цього, підрахуйте суму всіх парних чисел в цьому циклі
-// і поверніть її з функції.
+// Напишіть скрипт, який для об'єкту user, послідовно:
+// 1 - додасть поле mood зі значенням 'happy',
+// 2 - замінить hobby на 'skydiving',
+// 3 - замінить значення premium на false,
+// 4 - виведе зміст об'єкта user у форматі
+// '<ключ>:<значення>' використовуя Object.keys() та for...of
 
-function getNumbers(min, max) {
-  let count = 0;
-  for (let i = max; i >= min; i--) {
-    console.log(`Число - ${i}`);
-    if (!(i % 2)) {
-      if (i === 0) {
+// const user = {
+//     name: "John",
+//     age: 20,
+//     hobby: "tenis",
+//     premium: true,
+//   };
+
+const user = {
+  name: 'John',
+  age: 20,
+  hobby: 'tenis',
+  premium: true,
+  addKeyValue(key, value) {
+    this[key] = value;
+  },
+  change(key, newValue) {
+    let keyFound = false;
+    for (const item of Object.keys(this)) {
+      if (item === key) {
+        this[key] = newValue;
+        keyFound = true;
+        break;
+      }
+    }
+    if (!keyFound) {
+      console.log(`Key "${key}" not found!!!`);
+    }
+  },
+  show() {
+    for (const key of Object.keys(this)) {
+      if (typeof this[key] === 'function') {
+        console.log(`${key}: function`);
         continue;
       }
-      count += 1;
+      console.log(`${key}: ${this[key]}`);
     }
-  }
-  console.log(`Сума всіх парних чисел - ${count}`);
-  return count;
-}
+  },
+};
 
-getNumbers(0, 20);
+user.show();
+console.log('-'.repeat(50));
+user.addKeyValue('mood', 'happy');
+user.show();
+console.log('-'.repeat(50));
+user.change('hobby', 'skydiving');
+user.change('premium', false);
+user.change('Newkey', 'value');
+user.show();

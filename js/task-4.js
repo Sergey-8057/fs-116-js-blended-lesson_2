@@ -1,16 +1,20 @@
-// Отримуйте від користувача число (кількість хвилин) через prompt
-// і виводьте у консоль рядок у форматі годин та хвилин.
-// Приклад: користувач вводить в prompt '70' -> в консолі відобразиться '01:10'.
-// Корисне посилання для відображення годин та хвилин у потрібному форматі ('01' замість '1'):
-// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/padStart#examples
+// Напишіть функцію, яка сумуватиме сусідні числа
+// і пушитиме їх в новий масив.
 
+// const someArr = [22, 11, 34, 5, 12, 13, 14, 15];
 
-const number = Number(prompt('Enter number:'));
+// уточнення: складати необхідно перше число з другим, потім друге - з третім,
+// третє - з четвертим і так до кінця.
+// В результаті функція має повертати масив [33, 45, 39, 17, 25, 27, 29].
 
-function time(number) {
-  let hour = Math.floor(number / 60);
-  let min = number % 60;
-  return `${String(hour).padStart(2, '0')}:${String(min).padStart(2, '0')}`;
+function sumTwoNumbers(array) {
+  const newArray = [];
+  for (let i = 0; i < array.length - 1; i++) {
+    const sumNumber = array[i] + array[i + 1];
+    newArray.push(sumNumber);
+  }
+  return newArray;
 }
 
-console.log(time(number));
+const someArr = [22, 11, 34, 5, 12, 13, 14, 15];
+console.log(sumTwoNumbers(someArr)); //[33, 45, 39, 17, 25, 27, 29]

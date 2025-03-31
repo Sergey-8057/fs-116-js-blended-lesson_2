@@ -1,19 +1,41 @@
-// Напишіть функцію isAdult(age), яка  приймає число - вік користувача і повертає true,
-// якщо параметр age більше чи дорівнює 18.
-// В іншому випадку вона запитує підтвердження через confirm
-// і повертає його результат (true/false).
+// Створіть об'єкт calculator з наступними методами:
+// read(a, b) - приймає два аргумента і зберігає їх як властивості об'єкта,
+// sum() - повертає сумму збереженних значень (з перевіркою на наявність властивостей в об'єкті),
+// mult() - перемножає збереженні значення і повертає результат (з перевіркою на наявність властивостей в об'єкті),
+// винесіть перевірку на наявність властивостей в об'єкті в окремий метод exist().
 
-function isAdult(age) {
-  if (age >= 18) {
-    return true;
-  } else if (age < 18) {
-    return false;
-  } else {
-    return confirm('Ваш вік більше 18 років?');
-  }
-}
+// Якщо вказані властивості в обʼєкті відсутні (тобто метод exist повертає false),
+// методи sum і mult мають повертати рядок 'No such propeties'
 
-console.log(isAdult(18));
-console.log(isAdult(36));
-console.log(isAdult());
-console.log(isAdult(17));
+const calculator = {
+  read(a, b) {
+    this['a'] = a;
+    this['b'] = b;
+  },
+  sum() {
+    if (this.exist()) {
+      return this.a + this.b;
+    } else {
+      return 'No such propeties';
+    }
+  },
+  mult() {
+    if (this.exist()) {
+      return this.a * this.b;
+    } else {
+      return 'No such propeties';
+    }
+  },
+  exist() {
+    return typeof this.a === 'number' && typeof this.a === 'number' ? true : false;
+  },
+};
+
+console.log(calculator.sum());
+console.log(calculator.mult());
+
+calculator.read(3, 4);
+console.log(calculator);
+
+console.log(calculator.sum());
+console.log(calculator.mult());

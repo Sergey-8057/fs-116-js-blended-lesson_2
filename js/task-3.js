@@ -1,32 +1,22 @@
-// Змінна num може набувати 4 значення: '1', '2', '3' або '4'
-// (запитуй це значення у користувача через prompt).
-// Якщо вона має значення '1', то у змінну result запишіть 'зима',
-// якщо має значення '2' - 'весна' і так далі.
-// Розв'яжіть завдання через switch-case.
-// Не забудьте про дефолтне значення, на випадок, якщо користувач
-// введе в prompt щось інше. В такому випадку result має набувати значення:
-// "Вибачте, але ви маєте ввести значення від 1 до 4 включно".
-// Значення змінної result виведіть в консоль.
+// Напишіть функцію caclculateAverage(),
+// яка приймає довільну кількість
+// аргументів і повертає їхнє середнє значення.
+// Додайте перевірку, що аргументи - це числа.
 
-const number = Number(prompt('Enter number:'));
-
-function findSeason(number) {
-  switch (number) {
-    case 1:
-      alert('Зима');
-      break;
-    case 2:
-      alert('Весна');
-      break;
-    case 3:
-      alert('Літо');
-      break;
-    case 4:
-      alert('Осень');
-      break;
-    default:
-      alert('Введить число від 1 до 4')
+function caclculateAverage(...arr) {
+  console.log("arr =", arr);
+  const newArr = [];
+  let sum = 0;
+  for (const item of arr) {
+    console.log(item);
+    if (typeof item === 'number' && !Number.isNaN(item)) {
+      newArr.push(item);
+      sum += item;
+    }
   }
+  console.log('newArr =', newArr);
+  return sum / newArr.length;
 }
 
-findSeason(number);
+
+console.log(caclculateAverage(0, 10, 20, 30, true, NaN, 'NaN', ' ', 40));

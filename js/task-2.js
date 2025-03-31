@@ -1,23 +1,21 @@
-// У змінній min лежить випадкове число від 0 до 59.
-// Визначте, в яку чверть години потрапляє
-// це число (у першу, другу, третю чи четверту).
-// Виведіть в alert відповідне повідомлення, наприклад:
-// "10 входить в першу чверть"
+// Напишіть функцію checkLogin(array), яка:
+// Приймає масив логінів як аргумент.
+// Запитує ім'я користувача через prompt.
+// Перевіряє, чи є введене ім'я у переданому масиві.
+// Якщо ім'я є в масиві – виводить повідомлення через alert: "Welcome, <name>!"
+// Якщо ім'я відсутнє – виводить повідомлення: "User not found".
 
-// const min = Math.floor(Math.random() * (59 - 0) + 0);
+// const logins = ["Peter", "John", "Igor", "Sasha"];
 
-const min = Math.floor(Math.random() * (59 - 0) + 0);
+const logins = ['Peter', 'John', 'Igor', 'Sasha'];
 
-function findQuarter(min) {
-  if (min <= 15) {
-    return `${min} входить в першу чверть`;
-  } else if (min > 15 && min <= 30) {
-    return `${min} входить в другу чверть`;
-  } else if (min > 30 && min <= 45) {
-    return `${min} входить в третю чверть`;
+function checkLogin(array) {
+  const login = prompt('Enter your login:');
+  if (array.includes(login)) {
+    alert(`Welcome, ${login}!`);
   } else {
-    return `${min} входить в четверту чверть`;
+    alert('User not found');
   }
 }
 
-console.log(findQuarter(min));
+checkLogin(logins);

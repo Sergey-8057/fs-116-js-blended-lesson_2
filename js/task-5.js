@@ -1,57 +1,44 @@
-// Напишіть код, який запитуватиме у користувача
-// логін за допомогою prompt і виводить результат в консоль браузера
+// Напишіть функцію findSmallestNumber(numbers),
+// яка шукає найменше число в масиві.
+// Додайте перевірку, що функція отримує саме масив, і
+// якщо функція отримує масив - поверніть з функції найменше число,
+// в іншому випадку - поверніть 'Sory, it is not an array!'.
 
-// Після цього додайте перевірку введеного користувачем значення:
-// Якщо відвідувач вводить "Адмін",
-// то prompt запитує пароль (не забудьте зберігти його у змінну для подальшої перевірки).
-// Якщо нічого не ввели або натиснули Cancel,
-// Вивести в alert строку "Скасовано"
-// В іншому випадку вивести в alert рядок "Я вас не знаю"
+// const numbers = [2, 5, 35, 56, 12, 24, 7, 80, 3];
 
-// Пароль перевіряти так:
-// Якщо введено пароль "Я головний",
-// то вивести в alert рядок "Добрий день!",
-// в іншому випадку вивести в alert рядок "Невірний пароль!"
-
-const message = prompt('Enter login:');
-
-function invalideLogin(message) {
-  switch (message) {
-    case 'Адмін':
-      const pass = prompt('Enter password:');
-
-      if (pass === 'Я головний') {
-        alert('Добрий день!');
-      } else {
-        alert('Невірний пароль!');
-      }
-      break;
-
-    case '':
-      alert('Скасовано');
-      break;
-    case null:
-      alert('Скасовано');
-      break;
-    default:
-      alert('Я вас не знаю');
-  }
-}
-
-function invalideLoginTwo(message) {
-  if (message === 'Адмін') {
-    const pass = prompt('Enter password:');
-    if (pass === 'Я головний') {
-      alert('Добрий день!');
-    } else {
-      alert('Невірний пароль!');
-    }
-  } else if (message === '' || message === null) {
-    alert('Скасовано');
+function findSmallestNumber(numbers) {
+  if (Array.isArray(numbers)) {
+    return Math.min(...numbers)
   } else {
-    alert('Я вас не знаю');
+    return 'Sory, it is not an array!';
   }
 }
 
-// invalideLogin(message);
-invalideLoginTwo(message);
+const numbers = [2, 5, 35, 56, 12, 24, 7, 80, 3];
+console.log(findSmallestNumber(numbers));
+
+const letters = 'asd';
+console.log(findSmallestNumber(letters));
+
+// Альтернативное решение
+
+function findSmallestNumberAlt(numbers) {
+  if (Array.isArray(numbers)) {
+    return Math.min(...filterForNumbers(numbers));
+  } else {
+    return 'Sory, it is not an array!';
+  }
+}
+
+function filterForNumbers(arr) {
+  const newArr = [];
+  for (const item of arr) {
+    if (typeof item === 'number' && !Number.isNaN(item)) {
+      newArr.push(item);
+    }
+  }
+  return newArr;
+}
+
+console.log(findSmallestNumberAlt([40, 20, 30, true, NaN, 'NaN', ' ', 10]));
+console.log(findSmallestNumberAlt('text'));

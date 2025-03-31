@@ -1,18 +1,43 @@
-// Напишіть функцію fizzBuzz(num), яка приймає число і перевіряє кожне число від 1 до num:
-// Якщо число ділитися  без остачі на 3 - виводить в консоль 'fizz',
-// якщо ділиться  без остачі на 5 - виводить в консоль 'buzz',
-// якщо ділиться  без остачі і на 3, і на 5 - виводить в консоль 'fizzbuzz'.
+// Напишіть функцію calcTotalPrice(fruits, fruitName),
+// яка приймає массив об'єктів (fruits) і рядок з назвою фрукта (fruitName).
+// Функція рахує і повертає загальну вартість фрукта
+// з таким ім'ям, ціною та кількістю з об'єкта.
 
-function fizzBuzz(num) {
-  for (let i = 1; i <= num; i++) {
-    if (!(i % 3) && !(i % 5)) {
-      console.log(`Число - ${i} fizzbuzz`);
-    } else if (!(i % 3)) {
-      console.log(`Число - ${i} fizz`);
-    } else if (!(i % 5)) {
-      console.log(`Число - ${i} buzz`);
+// Зверніть увагу, що в масиві може бути кілька обʼєктів з однаковою
+// назвою фрукта, це також треба урахувати.
+
+// const fruits = [
+//     { name: "Яблуко", price: 45, quantity: 7 },
+//     { name: "Апельсин", price: 60, quantity: 4 },
+//     { name: "Банан", price: 125, quantity: 8 },
+//     { name: "Груша", price: 350, quantity: 2 },
+//     { name: "Виноград", price: 440, quantity: 3 },
+//     { name: "Банан", price: 125, quantity: 3 },
+//   ];
+
+const fruits = [
+  { name: 'Яблуко', price: 45, quantity: 7 },
+  { name: 'Апельсин', price: 60, quantity: 4 },
+  { name: 'Банан', price: 125, quantity: 8 },
+  { name: 'Груша', price: 350, quantity: 2 },
+  { name: 'Виноград', price: 440, quantity: 3 },
+  { name: 'Банан', price: 125, quantity: 3 },
+];
+
+function calcTotalPrice(fruits, fruitName) {
+  totalPrise = 0;
+  for (const fruit of fruits) {
+    if (fruit.name === fruitName) {
+      priceFruits = fruit.price * fruit.quantity;
+      totalPrise += priceFruits;
     }
   }
+  if (!totalPrise) {
+    return `Fruit "${fruitName}" not found`;
+  }
+  return `Total price "${fruitName}" = ${totalPrise}`;
 }
 
-fizzBuzz(35);
+console.log(calcTotalPrice(fruits, 'Апельсин'));
+console.log(calcTotalPrice(fruits, 'Банан'));
+console.log(calcTotalPrice(fruits, 'Киви'));
